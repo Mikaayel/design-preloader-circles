@@ -1,0 +1,11 @@
+#auto-generated stuff
+node_modules/
+yarn.lock
+.yarnclean
+dist/
+stats.json
+.vscode
+
+# trash
+.DS_Store
+npm-debug.log
