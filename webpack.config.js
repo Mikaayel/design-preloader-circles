@@ -6,10 +6,39 @@ const Glob = require('glob'); // needed for purifycss
 const PurifyCSSPlugin = require('purifycss-webpack');
 
 let isProd = process.env.NODE_ENV === "production";
-let cssDev = ['style-loader', 'css-loader', 'sass-loader'];
+let cssDev = [
+    'style-loader',
+    'css-loader',
+    {
+        loader: 'postcss-loader',
+        options: {
+            plugins: function() {
+                return [
+                    require('precss'),
+                    require('autoprefixer')
+                ];
+            }
+        }
+    },
+    'sass-loader'
+];
 let cssProd = ExtractTextPlugin.extract({
     fallback: 'style-loader',
-    use: ['css-loader', 'sass-loader'],
+    use: [
+        'css-loader',
+        {
+            loader: 'postcss-loader',
+            options: {
+                plugins: function() {
+                    return [
+                        require('precss'),
+                        require('autoprefixer')
+                    ];
+                }
+            }
+        },
+        'sass-loader'
+    ],
 });
 let cssConfig = isProd ? cssProd : cssDev;
 
@@ -74,7 +103,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Boiler Plate V2.0',
+            title: 'Preloader Circles',
             minify: {
                 collapseWhitespace: true
             },

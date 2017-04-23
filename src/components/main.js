@@ -9,9 +9,12 @@ let Main = React.createClass({
         return (
             <div>
                 <Navigation/>
-                <main>
-                    <h1>Main</h1>
-                </main>
+                    <header>
+                        <h1>Main</h1>
+                    </header>
+                    <div id="loader-wrapper">
+                        <div id="loader"></div>
+                    </div>
                 <Footer/>
             </div>
         );
